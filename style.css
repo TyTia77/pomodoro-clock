@@ -1,0 +1,94 @@
+body {
+    background-color: #2C3E50;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+#app {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+
+.setting-container {
+    /*background-color: red;*/
+    overflow: hidden;
+}
+
+.setting {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 30px;
+}
+
+.setting label {
+    width: 100%;
+    text-align: center;
+    font-size: 1.1em;
+    text-transform: capitalize;
+}
+
+
+.lower span {
+    display: inline-block;
+    width: calc(100% / 3 - 3px);
+    font-size: 1.5em;
+    text-align: center;
+    user-select: none;
+}
+
+.lower span:focus{
+    outline: none;
+}
+
+.lower span:first-child {
+    text-align: right;
+}
+
+.lower span:last-child {
+    text-align: left;
+}
+
+.lower span:nth-child(2n + 1):hover{
+    cursor: pointer;
+}
+
+.clock {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    border: 3px solid #0262B6;
+    color: #fff;
+    overflow: hidden;
+    box-shadow: 6px 13px 18px 0px black;;
+}
+
+.clock label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 25%;
+    font-size: 2em;
+    z-index: 1;
+}
+
+.time {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 4em;
+    top: 50%;
+    z-index: 1;
+}
+
+.clockfill{
+    display: block;
+    position: relative;
+    background-color: #0262B6;
+    height: 100%;
+    animation-duration: .2s;
+}

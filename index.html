@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Timer</title>
+    <link rel="icon" href="clock-icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app" ng-app="app" ng-controller='mainCtrl'>
+        <div class="setting-container">
+            <div class='setting'>
+                <label>
+                    break length
+                </label>
+                <div class='lower'>
+                    <span ng-click='breakChange()'>-</span>
+                    <span>{{break}}</span>
+                    <span ng-click="breakChange('inc')">+</span>
+                </div>
+            </div>
+
+            <div class='setting'>
+                <label>
+                    session length
+                </label>
+                <div class='lower'>
+                    <span ng-click="sessChange()">-</span>
+                    <span>{{session}}</span>
+                    <span ng-click="sessChange('inc')">+</span>
+                </div>
+            </div>
+        </div>
+
+        <div class='clock' ng-click="toggleTimer()">
+            <label>
+                {{sessionName}}
+            </label>
+            <div class="time">
+                {{timeleft}}
+            </div>
+            <div class="clockfill" style="top: {{percent}}%; background-color: #{{fillColor}}"></div>
+        </div>
+
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
