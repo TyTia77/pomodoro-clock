@@ -7,7 +7,7 @@ app.controller('mainCtrl', [ '$scope', '$interval', ($scope, $interval)=>{
     $scope.percent = 100;
 
     // timer running
-    var isTimer = false;
+    $scope.isTimer = false;
     $scope.sessionName = 'Session';
     $scope.fillColor = '0262B6';
 
@@ -56,13 +56,15 @@ app.controller('mainCtrl', [ '$scope', '$interval', ($scope, $interval)=>{
         } else {
             $scope.timeleft = secsToHms(secs);
             var percent = 60 * $scope.session;
-            $scope.percent = Math.floor(Math.abs(secs / percent)*100);
-            console.log(Math.floor($scope.percent));
+            // $scope.percent = Math.floor(Math.abs(secs / percent)*100);
+            var calculatedPercent = Math.floor(Math.abs(secs / percent * 100 - 100));
+            progressBarUpdate(calculatedPercent);
+            // console.log(Math.floor($scope.percent));
         }
     }
 
     $scope.sessChange = type => {
-        if (!isTimer){
+        if (!$scope.isTimer){
             type === 'inc' ? $scope.session++ : $scope.session--;
             $scope.session === 0 ? $scope.session++ : '';
             $scope.timeleft = $scope.session;
@@ -71,14 +73,14 @@ app.controller('mainCtrl', [ '$scope', '$interval', ($scope, $interval)=>{
     }
 
     $scope.breakChange = type => {
-        if (!isTimer && $scope.session > 0){
+        if (!$scope.isTimer && $scope.session > 0){
             type === 'inc' ? $scope.break++ : $scope.break--;
             $scope.break === 0 ? $scope.break++ : '';
         }
     }
 
     $scope.toggleTimer = () => {
-        if (!isTimer){
+        if (!$scope.isTimer){
             if ($scope.sessionName === 'Session'){
                 $scope.currentLength = $scope.session;
             } else {
@@ -86,12 +88,45 @@ app.controller('mainCtrl', [ '$scope', '$interval', ($scope, $interval)=>{
             }
             timer();
             counter = $interval(timer, 1000);
-            isTimer = !isTimer;
+            $scope.isTimer = !$scope.isTimer;
         } else {
             //pause timer
             $interval.cancel(counter);
-            isTimer = !isTimer;
+            $scope.isTimer = !$scope.isTimer;
         }
+    }
+
+    function rotate(element, degree) {
+        element.css({
+            '-webkit-transform': 'rotate(' + degree + 'deg)',
+                '-moz-transform': 'rotate(' + degree + 'deg)',
+                '-ms-transform': 'rotate(' + degree + 'deg)',
+                '-o-transform': 'rotate(' + degree + 'deg)',
+                'transform': 'rotate(' + degree + 'deg)',
+                'zoom': 1
+        });
+    }
+
+    function progressBarUpdate(percentage) {
+        var firstHalfAngle = 180;
+        var secondHalfAngle = 0;
+
+        // caluclate the angle
+        var drawAngle = percentage * 360 / 100;
+
+        // calculate the angle to be displayed if each half
+        if (drawAngle <= 180) {
+            firstHalfAngle = drawAngle;
+        } else {
+            secondHalfAngle = drawAngle - 180;
+        }
+
+        // set the transition
+        rotate($(".slice1"), firstHalfAngle);
+        rotate($(".slice2"), secondHalfAngle);
+
+        // set the values on the text
+       // $(".status").html(x + " of " + outOf);
     }
 
 

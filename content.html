@@ -1,0 +1,49 @@
+<div class="setting-container" ng-class="{'disabled' : isTimer}">
+    <div class='setting'>
+        <label>
+            break length
+        </label>
+        <div class='lower'>
+            <!-- <span ng-click='breakChange()'>-</span> -->
+            <span class="fa fa-minus-circle" aria-hidden="true" ng-click='breakChange()'></span>
+            <span>{{break}}</span>
+            <span class="fa fa-plus-circle" aria-hidden="true" ng-click="breakChange('inc')"></span>
+            <!-- <span ng-click="breakChange('inc')">+</span> -->
+        </div>
+    </div>
+
+    <div class='setting'>
+        <label>
+            session length
+        </label>
+        <div class='lower'>
+            <span class="fa fa-minus-circle" aria-hidden="true" ng-click='sessChange()'></span>
+            <!-- <span ng-click="sessChange()">-</span> -->
+            <span>{{session}}</span>
+            <span class="fa fa-plus-circle" aria-hidden="true" ng-click="sessChange('inc')"></span>
+
+            <!-- <span ng-click="sessChange('inc')">+</span> -->
+        </div>
+    </div>
+</div>
+
+<div class='clock'>
+    <div class="clip1">
+        <div class="slice1"></div>
+    </div>
+    <div class="clip2">
+        <div class="slice2"></div>
+    </div>
+
+    <div class="inner-circle">
+        <label>
+            {{sessionName}}
+        </label>
+        <div class="time">
+            {{timeleft}}
+        </div>
+        <i ng-show="!isTimer" class="fa fa-play" style="color: #fff" aria-hidden="true" ng-click="toggleTimer()"></i>
+        <i ng-show="isTimer" class="fa fa-pause" style="color: #fff" aria-hidden="true" ng-click="toggleTimer()"></i>
+    </div>
+    <!-- <div class="clockfill" style="top: {{percent}}%; background-color: #{{fillColor}}"></div> -->
+</div>
